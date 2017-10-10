@@ -1,13 +1,11 @@
 ﻿namespace CloudAuthorization
 {
-    using System.Collections.Generic;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Logging;
-    using IdentityServer4.Models;
-    using IdentityServer4.Test;
+    using global::CloudAuthorization.Resources;
 
     public class Startup
     {
@@ -16,10 +14,10 @@
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddIdentityServer()
-                .AddInMemoryClients(new List<Client>())
-                .AddInMemoryIdentityResources(new List<IdentityResource>())
-                .AddInMemoryApiResources(new List<ApiResource>())
-                .AddTestUsers(new List<TestUser>())
+                .AddInMemoryClients(Clients.Get())
+                .AddInMemoryIdentityResources(Resources.Resources.GetIdentityResources())
+                .AddInMemoryApiResources(Resources.Resources.GetApiResources())
+                .AddTestUsers(Users.Get())
                 .AddTemporarySigningCredential();
         }
 
