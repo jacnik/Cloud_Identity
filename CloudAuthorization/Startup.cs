@@ -32,7 +32,10 @@
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            /*
+                OpenID Connect Discovery Document
+                http://localhost:8539/.well-known/openid-configuration
+             */
             app.UseIdentityServer();
 
             app.Run(async (context) =>
