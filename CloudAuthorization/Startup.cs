@@ -18,7 +18,9 @@
                 .AddInMemoryIdentityResources(Resources.Resources.GetIdentityResources())
                 .AddInMemoryApiResources(Resources.Resources.GetApiResources())
                 .AddTestUsers(Users.Get())
-                .AddTemporarySigningCredential();
+                .AddDeveloperSigningCredential();
+
+            services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,10 +38,13 @@
              */
             app.UseIdentityServer();
 
-            app.Run(async (context) =>
-            {
-                await context.Response.WriteAsync("Hello Identity Server!");
-            });
+            app.UseStaticFiles();
+            app.UseMvcWithDefaultRoute();
+
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.WriteAsync("Hello Identity Server!");
+            //});
         }
     }
 }
