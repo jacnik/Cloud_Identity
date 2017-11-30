@@ -1,11 +1,10 @@
 ﻿namespace CloudAuthorization
 {
+    using global::CloudAuthorization.Resources;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.Extensions.Logging;
-    using global::CloudAuthorization.Resources;
 
     public class Startup
     {
@@ -20,31 +19,30 @@
                 .AddTestUsers(Users.Get())
                 .AddDeveloperSigningCredential();
 
-            services.AddMvc();
+            //services.AddMvc();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            loggerFactory.AddConsole();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+
             /*
                 OpenID Connect Discovery Document
-                http://localhost:8539/.well-known/openid-configuration
+                http://localhost:8211/.well-known/openid-configuration
              */
             app.UseIdentityServer();
 
-            app.UseStaticFiles();
-            app.UseMvcWithDefaultRoute();
+            //app.UseStaticFiles();
+            //app.UseMvcWithDefaultRoute();
 
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello Identity Server!");
-            //});
+            app.Run(async (context) =>
+            {
+                await context.Response.WriteAsync("Hello Identity Server!");
+            });
         }
     }
 }
