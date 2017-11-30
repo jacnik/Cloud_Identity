@@ -28,7 +28,10 @@
     <Endpoints>
       <!-- This endpoint is used by the communication listener to obtain the port on which to 
            listen. Please note that if your service is partitioned, this port is shared with 
-           replicas of different partitions that are placed in your code. -->
+           replicas of different partitions that are placed in your code.
+       
+          Configuring https endpoints: https://docs.microsoft.com/en-us/azure/service-fabric/service-fabric-service-manifest-resources
+       -->
       <Endpoint Protocol="http" Name="ServiceEndpoint" Type="Input" Port="8211" />
     </Endpoints>
   </Resources>
