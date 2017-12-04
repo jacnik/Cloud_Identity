@@ -34,8 +34,8 @@
                         "role",
                         "customAPI.write"
                     },
-                    RedirectUris = new List<string>{ "http://localhost:8211/signin-oidc" },
-                    PostLogoutRedirectUris = new List<string> { "http://localhost:8211" }
+                    RedirectUris = new List<string>{ "http://localhost:8710/signin-oidc" },
+                    PostLogoutRedirectUris = new List<string> { "http://localhost:8710" }
                 }
             };
         }
